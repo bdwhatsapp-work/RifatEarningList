@@ -26,7 +26,7 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
@@ -38,7 +38,6 @@
             transform-style: preserve-3d;
         }
         
-        /* নতুন লাস্ট আপডেট সেকশন */
         .last-update-bar {
             background: linear-gradient(135deg, #ff8c00, #ff5500);
             color: white;
@@ -150,19 +149,189 @@
             transform: translateZ(10px);
         }
         
-        .date-display {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            animation: pulse 3s infinite;
+        .summary-top {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
             margin-top: 20px;
-            display: inline-block;
-            transform: translateZ(20px);
+            gap: 15px;
         }
         
+        .summary-item-top {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: bounceIn 1s ease-out;
+            transform: translateZ(15px);
+            transition: transform 0.3s ease;
+        }
+        
+        .summary-item-top:hover {
+            transform: translateZ(20px) scale(1.05);
+            background: linear-gradient(135deg, #00c6ff, #0052cc);
+        }
+
+        .withdraw-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #4CAF50, #2E8B57);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.3s ease;
+            transform: translateZ(15px);
+        }
+
+        .withdraw-button:hover {
+            background: linear-gradient(135deg, #4CAF50, #228B22);
+            transform: translateZ(20px) scale(1.02);
+        }
+
+        .withdraw-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            position: relative;
+            transform: scale(0.9);
+            animation: modalOpen 0.3s forwards;
+            color: white;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes modalOpen {
+            from { transform: scale(0.8) translateY(-50px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #fff;
+            text-decoration: none;
+            transform: scale(1.1);
+        }
+
+        .modal-content h3 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #00c6ff;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            transform: translateZ(10px);
+        }
+
+        .modal-content label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 18px;
+            color: #c0d9ed;
+            transform: translateZ(5px);
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="number"],
+        .modal-content select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #4a6c8e;
+            background-color: #3b5a7a;
+            color: #e0f2ff;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transform: translateZ(5px);
+        }
+
+        .modal-content input[type="text"]:focus,
+        .modal-content input[type="number"]:focus,
+        .modal-content select:focus {
+            border-color: #00c6ff;
+            box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
+            outline: none;
+        }
+
+        .modal-withdraw-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateZ(10px);
+        }
+
+        .modal-withdraw-button:hover {
+            background: linear-gradient(135deg, #00c6ff, #0052cc);
+            transform: translateZ(15px) scale(1.02);
+        }
+
+        .error-message {
+            color: #ff4757;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            transform: translateZ(5px);
+        }
+        
+        .success-message {
+            color: #2ed573;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            transform: translateZ(5px);
+        }
+
         .income-section {
             flex: 2;
             min-width: 300px;
@@ -212,6 +381,7 @@
         .income-table tr:nth-child(3) { animation-delay: 0.3s; }
         .income-table tr:nth-child(4) { animation-delay: 0.4s; }
         .income-table tr:nth-child(5) { animation-delay: 0.5s; }
+        .income-table tr:nth-child(6) { animation-delay: 0.6s; }
         
         .income-table td {
             padding: 22px 20px;
@@ -234,6 +404,16 @@
             transform: translateZ(10px);
         }
         
+        .status-active {
+            color: #00ff8c;
+            font-weight: bold;
+        }
+        
+        .status-offline {
+            color: #ff4757;
+            font-weight: bold;
+        }
+        
         .separator {
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
@@ -250,37 +430,6 @@
             color: #ffcc00 !important;
             animation: pulse 1.5s infinite;
             text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
-        }
-        
-        .summary {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            animation: fadeIn 1.2s ease-out;
-            transform-style: preserve-3d;
-        }
-        
-        .summary-item {
-            margin: 15px;
-            padding: 20px 25px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 15px;
-            min-width: 220px;
-            animation: bounceIn 1s ease-out;
-            transform: translateZ(20px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .summary-item:hover {
-            transform: translateZ(30px) scale(1.05);
-            background: rgba(255, 255, 255, 0.2);
         }
         
         /* 3D Animations */
@@ -375,7 +524,7 @@
         }
         
         /* Responsive design */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .content-wrapper {
                 flex-direction: column;
             }
@@ -389,15 +538,15 @@
                 padding: 15px 12px;
             }
             
-            .summary {
-                flex-direction: column;
-            }
-            
             .header h1 {
                 font-size: 28px;
             }
             
-            .summary-item {
+            .summary-top {
+                flex-direction: column;
+            }
+            
+            .summary-item-top {
                 min-width: auto;
                 width: 100%;
             }
@@ -414,21 +563,36 @@
     <div class="container">
         <!-- নতুন লাস্ট আপডেট বার -->
         <div class="last-update-bar">
-            <span class="update-text"><i class="fas fa-sync-alt"></i> latest update</span>
-            <span class="update-time" id="manual-update-time">14 September, ২০২5 - 6:40 PM</span>
+            <span class="update-text"><i class="fas fa-sync-alt"></i> সর্বশেষ আপডেট:</span>
+            <span class="update-time" id="manual-update-time">১৫ই সেপ্টেম্বর, ২০২৫ - ১১:১৯ AM</span>
         </div>
 
         <div class="header">
-            <h1><i class="fab fa-whatsapp"></i> BD Whatsapp work</h1>
-            <p>জমাকৃত নাম্বারের ইনকাম লিস্ট </p>
+            <h1><i class="fab fa-whatsapp"></i> BD Whatsapp Work</h1>
+            <p>জমাকৃত নাম্বারের ইনকাম লিস্ট</p>
         </div>
 
         <div class="content-wrapper">
             <div class="client-info">
                 <div class="client-details">
                     <h2><i class="fas fa-user"></i> ক্লায়েন্ট তথ্য</h2>
-                    <p><strong>নাম:</strong> ফকুন্নু রিফাত</p>
+                    <p><strong>নাম:</strong>  রিফাত</p>
                     <p><strong>আইডি:</strong> RIFAT BDWSWORK</p>
+                    
+                    <!-- উপরের দিকে সামারি আইটেম -->
+                    <div class="summary-top">
+                        <div class="summary-item-top">
+                            <i class="fas fa-check-circle"></i> অ্যাক্টিভ = 1 নম্বর
+                        </div>
+                        <div class="summary-item-top" id="total-balance-display">
+                            <i class="fas fa-coins"></i> মোট = <span id="current-balance">6</span> টাকা <span class="coin">💸</span>
+                        </div>
+                    </div>
+
+                    <!-- WITHDRAW Button -->
+                    <button class="withdraw-button" id="openWithdrawModal">
+                        <i class="fas fa-money-bill-transfer"></i> WITHDRAW
+                    </button>
                 </div>
             </div>
 
@@ -442,55 +606,192 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="number-cell">1) 01720904503<span style="color:red;font-weight:bold;"> OFFLINE</span></td>
+                            <td class="number-cell">1) 01720904503 <span class="status-offline">OFFLINE</span></td>
                             <td class="amount-cell">0 টাকা <span class="coin">💸</span></td>
                         </tr>
                         <tr class="separator">
                             <td colspan="2">—-------------------------------------------------------------</td>
                         </tr>
                         <tr>
-                            <td class="number-cell">2) 01626580252<span style="color:blue;font-weight:bold;">✅ ACTIVE</span></td>
+                            <td class="number-cell">2) 01626580252 <span class="status-active">✅ ACTIVE</span></td>
                             <td class="amount-cell">6 টাকা <span class="coin">💸</span></td>
                         </tr>
                         <tr class="separator">
                             <td colspan="2">—-------------------------------------------------------------</td>
                         </tr>
                         <tr>
-                            <td class="number-cell">3) 01814233211<span style="color:red;font-weight:bold;">  OFFLINE</span></td>
+                            <td class="number-cell">3) 01814233211 <span class="status-offline">OFFLINE</span></td>
                             <td class="amount-cell">0 টাকা <span class="coin">💸</span></td>
                         </tr>
                         <tr class="separator">
                             <td colspan="2">—-------------------------------------------------------------</td>
                         </tr>
                         <tr>
-                            <td class="number-cell">4) 01623963131<span style="color:red;font-weight:bold;">  OFFLINE</span></td>
+                            <td class="number-cell">4) 01623963131 <span class="status-offline">OFFLINE</span></td>
                             <td class="amount-cell">0 টাকা <span class="coin">💸</span></td>
                         </tr>
                         <tr class="separator">
                             <td colspan="2">—-------------------------------------------------------------</td>
                         </tr>
                         <tr>
-                         <td class="number-cell">5) 01623963131<span style="color:red;font-weight:bold;">  OFFLINE</span></td>
+                            <td class="number-cell">5) 01623963131 <span class="status-offline">OFFLINE</span></td>
                             <td class="amount-cell">....................... টাকা <span class="coin">💸</span></td>
-                        </tr>
-                        <tr class="separator">
-                            <td colspan="2">—-------------------------------------------------------------</td>
-                        </tr>
-                        <tr>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
 
-        <div class="summary">
-            <div class="summary-item">
-                <i class="fas fa-check-circle"></i> অ্যাক্টিভ = 1 নম্বর
-            </div>
-            <div class="summary-item">
-                <i class="fas fa-coins"></i> মোট = 6 টাকা <span class="coin">💸</span>
-            </div>
+    <!-- The Withdraw Modal -->
+    <div id="withdrawModal" class="withdraw-modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3><i class="fas fa-money-check-dollar"></i> উইথড্রয়াল ফর্ম</h3>
+            <p><strong>সর্বনিম্ন উইথড্র অ্যামাউন্ট:</strong> ১৮০ টাকা</p>
+
+            <form id="withdrawForm">
+                <label for="paymentMethod">পেমেন্ট মেথড:</label>
+                <select id="paymentMethod" name="paymentMethod">
+                    <option value="bkash">বিকাশ</option>
+                </select>
+
+                <label for="bkashNumber">বিকাশ নাম্বার:</label>
+                <input type="text" id="bkashNumber" name="bkashNumber" placeholder="আপনার বিকাশ নাম্বার লিখুন" required>
+
+                <label for="withdrawAmount">উইথড্র অ্যামাউন্ট:</label>
+                <input type="number" id="withdrawAmount" name="withdrawAmount" placeholder="উইথড্র করার পরিমাণ লিখুন" min="180" required>
+                
+                <p class="error-message" id="withdrawError"></p>
+                <p class="success-message" id="withdrawSuccess"></p>
+
+                <button type="submit" class="modal-withdraw-button">
+                    <i class="fas fa-paper-plane"></i> উইথড্র করুন
+                </button>
+            </form>
         </div>
     </div>
+
+    <script>
+        // আপনার টেলিগ্রাম বটের টোকেন এবং চ্যাট আইডি এখানে লিখুন
+        const TELEGRAM_BOT_TOKEN = '7992726429:AAGig0O2zuPV5a4ILLp6t3-zhJDSwMO2Z2g';
+        const TELEGRAM_CHAT_ID = '6113272565';
+
+        const withdrawModal = document.getElementById('withdrawModal');
+        const openWithdrawModalBtn = document.getElementById('openWithdrawModal');
+        const closeButton = document.querySelector('.close-button');
+        const withdrawForm = document.getElementById('withdrawForm');
+        const withdrawError = document.getElementById('withdrawError');
+        const withdrawSuccess = document.getElementById('withdrawSuccess');
+        const currentBalanceElement = document.getElementById('current-balance');
+        const withdrawAmountInput = document.getElementById('withdrawAmount');
+
+        let currentBalance = parseFloat(currentBalanceElement.textContent);
+
+        openWithdrawModalBtn.onclick = function() {
+            withdrawModal.style.display = "flex";
+            withdrawError.textContent = '';
+            withdrawSuccess.textContent = '';
+            withdrawAmountInput.value = '';
+        }
+
+        closeButton.onclick = function() {
+            withdrawModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == withdrawModal) {
+                withdrawModal.style.display = "none";
+            }
+        }
+
+        // বিকাশ নাম্বার ভ্যালিডেশন ফাংশন
+        function isValidBkashNumber(number) {
+            // শুধুমাত্র সংখ্যা আছে কিনা তা পরীক্ষা করুন
+            if (!/^\d+$/.test(number)) {
+                return false;
+            }
+            
+            // বাংলাদেশী মোবাইল নাম্বার ভ্যালিডেশন (11 ডিজিট, 013/014/015/016/017/018/019 দিয়ে শুরু)
+            const bkashRegex = /^01[3-9]\d{8}$/;
+            return bkashRegex.test(number);
+        }
+
+        withdrawForm.onsubmit = function(event) {
+            event.preventDefault();
+
+            const bkashNumber = document.getElementById('bkashNumber').value;
+            const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
+            const userName = " রিফাত";
+            const userId = "RIFAT BDWSWORK";
+
+            withdrawError.textContent = '';
+            withdrawSuccess.textContent = '';
+
+            // বিকাশ নাম্বার ভ্যালিডেশন
+            if (!isValidBkashNumber(bkashNumber)) {
+                withdrawError.textContent = 'দয়া করে একটি বৈধ বাংলাদেশী মোবাইল নাম্বার লিখুন (11 ডিজিট, 01 দিয়ে শুরু)';
+                return;
+            }
+
+            if (isNaN(withdrawAmount) || withdrawAmount < 180) {
+                withdrawError.textContent = 'সর্বনিম্ন উইথড্র অ্যামাউন্ট ১৮০ টাকা।';
+                return;
+            }
+
+            if (withdrawAmount > currentBalance) {
+                withdrawError.textContent = `আপনার অ্যাকাউন্টে যথেষ্ট ব্যালেন্স নেই। বর্তমান ব্যালেন্স: ${currentBalance} টাকা।`;
+                return;
+            }
+
+            // টেলিগ্রাম বটের মাধ্যমে তথ্য পাঠানোর জন্য
+            const message = `
+*নতুন উইথড্রয়াল অনুরোধ!*
+---------------------------------------
+*ইউজার নাম:* ${userName}
+*ইউজার আইডি:* ${userId}
+*পেমেন্ট মেথড:* বিকাশ
+*বিকাশ নাম্বার:* ${bkashNumber}
+*উইথড্র অ্যামাউন্ট:* ${withdrawAmount} টাকা
+---------------------------------------
+`;
+
+            const telegramApiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+            fetch(telegramApiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    // ব্যালেন্স আপডেট করুন
+                    currentBalance -= withdrawAmount;
+                    currentBalanceElement.textContent = currentBalance.toFixed(2);
+                    
+                    withdrawSuccess.textContent = 'আপনার উইথড্র অনুরোধ সফলভাবে পাঠানো হয়েছে!';
+                    
+                    // 2 সেকেন্ড পর মোডাল বন্ধ করুন
+                    setTimeout(() => {
+                        withdrawModal.style.display = "none";
+                    }, 2000);
+                } else {
+                    withdrawError.textContent = 'উইথড্র অনুরোধ পাঠাতে সমস্যা হয়েছে: ' + (data.description || 'অজানা ত্রুটি');
+                    console.error('Telegram API Error:', data);
+                }
+            })
+            .catch(error => {
+                withdrawError.textContent = 'নেটওয়ার্ক ত্রুটি বা অন্য কোনো সমস্যা হয়েছে।';
+                console.error('Fetch Error:', error);
+            });
+        };
+    </script>
 </body>
 </html>
